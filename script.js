@@ -101,15 +101,18 @@ function renderFooter() {
 }
 
 function renderLists() {
-  const list = document.getElementById("departmentList");
-
   Departments.forEach((department) => {
     const employeeList = document.createElement("ul");
 
+    const main = document.querySelector("main");
+    const departmentSection = document.createElement("section");
     const departmentHeader = document.createElement("h2");
+    departmentSection.id = department.name;
+
+    main.appendChild(departmentSection);
     departmentHeader.textContent = department.name;
-    list.appendChild(departmentHeader);
-    list.appendChild(employeeList);
+    departmentSection.appendChild(departmentHeader);
+    departmentSection.appendChild(employeeList);
 
     department.employees.forEach((employee) => {
       const listItem = document.createElement("li");
