@@ -1,9 +1,19 @@
 body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 1%;
 }
+
+ul{
+    list-style-type: none;
+}
+
 
 img{
 max-width: 15vw;
 max-height: 15vh;
 margin: 0;
+}
+
+p{
+    text-align: center;
 }
