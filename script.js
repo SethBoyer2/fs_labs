@@ -92,16 +92,18 @@ const Departments = [
   },
 ];
 
-function renderFooter() {
+function renderFooter() {}
+
+function renderLists() {}
+
+addEventListener("DOMContentLoaded", (event) => {
+  const list = document.getElementById("departmentList");
   const copyright = document.createElement("p");
   const currentYear = new Date().getFullYear();
   const footer = document.getElementById("footer");
   copyright.textContent = `Copyright Pixell River Financial, ${currentYear}`;
   footer.appendChild(copyright);
-}
 
-function renderLists() {
-  const list = document.getElementById("departmentList");
   Departments.forEach((department) => {
     const employeeList = document.createElement("ul");
 
@@ -116,9 +118,4 @@ function renderLists() {
       employeeList.appendChild(listItem);
     });
   });
-}
-
-addEventListener("DOMContentLoaded", (event) => {
-  renderFooter();
-  renderLists();
 });
