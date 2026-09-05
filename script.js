@@ -119,7 +119,14 @@ function renderLists() {
   });
 }
 
-addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
   renderFooter();
   renderLists();
 });
+
+/*
+separated into functions because JS (At least when I use it,) IS SO UGLY.
+I can write very nice looking LUA, Python, and even C,
+but when it comes to formatting JS it looks like you're
+watching an episode of extreme hoarders on TLC
+*/
