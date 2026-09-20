@@ -18,10 +18,11 @@ function EmployeeForm () {
 
         const employeeValues = {
             firstName: formData.get('employeeFirstName'),
-            lastName: formData.get('employeeLastName')
+            lastName: formData.get('employeeLastName'),
+            department: formData.get('employeeDepartment')
         }
 
-        console.log(employeeValues.firstName, employeeValues.lastName)
+        console.log(employeeValues.firstName, employeeValues.lastName, employeeValues.department)
     }
     return(
         <form id="employeeForm" onSubmit={handleSubmission}>
@@ -32,7 +33,18 @@ function EmployeeForm () {
                 <input id="lastNameBox" type="text" name="employeeLastName" />
             </label>
             <label>Employee Department:
-                input
+                <select name="employeeDepartment" id="department_field">
+                    <option value="administration">Administration</option>
+                    <option value="audit">Audit</option>
+                    <option value="banking_operations">Banking Operations</option>
+                    <option value="communications">Communications</option>
+                    <option value="corporate_services">Corporate Services</option>
+                    <option value="facilities">Facilities</option>
+                    <option value="financial_services">Financial Services</option>
+                    <option value="human_resources">Human Resources</option>
+                    <option value="information_technology">Information Technology</option>
+                    <option value="it_technician">It Technician</option>
+                </select>
 
             </label>
             <button id="submitButton" type="submit">Submit</button>
