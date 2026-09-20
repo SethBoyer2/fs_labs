@@ -1,4 +1,5 @@
 import { useState } from "react"
+import './Form.css'
 
 interface employeeData {
     firstName: string
@@ -23,16 +24,19 @@ function EmployeeForm () {
         console.log(employeeValues.firstName, employeeValues.lastName)
     }
     return(
-        <form onSubmit={handleSubmission}>
+        <form id="employeeForm" onSubmit={handleSubmission}>
             <label>Employee First Name:
-                <input type="text" name="employeeFirstName" />
+                <input id="firstNameBox" type="text" name="employeeFirstName" />
             </label>
             <label>Employee Last Name:
-                <input type="text" name="employeeLastName" />
+                <input id="lastNameBox" type="text" name="employeeLastName" />
             </label>
-            <label> Submit New Employee:
-                <button type="submit">Submit</button>
+            <label>Employee Department:
+                input
+
             </label>
+            <button id="submitButton" type="submit">Submit</button>
+            
 
         </form>
     )
