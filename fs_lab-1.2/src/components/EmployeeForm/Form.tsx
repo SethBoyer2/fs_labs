@@ -13,9 +13,14 @@ function EmployeeForm () {
         event.preventDefault()
 
         // event.target refers to the DOM element that triggered the event
-        const form = event.target
-        const formData = new FormData(form)
+        const formData = new FormData(event.target)
 
+        const employeeValues = {
+            firstName: formData.get('employeeFirstName'),
+            lastName: formData.get('employeeLastName')
+        }
+
+        console.log(employeeValues.firstName, employeeValues.lastName)
     }
     return(
         <form onSubmit={handleSubmission}>
