@@ -9,8 +9,12 @@ interface employeeData {
 
 }
 function EmployeeForm () {
-    function handleSubmission(e: React.SubmitEvent<HTMLFormElement>) {
-        e.preventDefault()
+    function handleSubmission(event: React.SubmitEvent<HTMLFormElement>) {
+        event.preventDefault()
+
+        // event.target refers to the DOM element that triggered the event
+        const form = event.target
+        const formData = new FormData(form)
 
     }
     return(
@@ -22,7 +26,7 @@ function EmployeeForm () {
                 <input type="text" name="employeeLastName" />
             </label>
             <label> Submit New Employee:
-                <button type="submit"></button>
+                <button type="submit">Submit</button>
             </label>
 
         </form>
