@@ -6,7 +6,7 @@ function DepartmentList({departments}: {departments: Department[]}) {
     return(
         departments.map((department) => (
             <section>
-                <h2 id="department.name">{department.name}</h2>
+                <h2 id={department.name}>{department.name}</h2>
 
                 <ul>
                     {department.employees.map((employee) => (
