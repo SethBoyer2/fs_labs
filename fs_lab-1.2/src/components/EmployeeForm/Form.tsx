@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { use, useState } from "react"
 import './Form.css'
+
 
 export interface EmployeeData {
     firstName: string
@@ -13,44 +14,50 @@ function EmployeeForm () {
     // useState is function scoped
     const [nameError, setNameError] = useState('')
     const [lastNameError, setLastNameError] = useState('')
+    const [validationError, setValidationError] = useState('')
+
     function handleSubmission(event: React.SubmitEvent<HTMLFormElement>) {
         event.preventDefault()
-
-        
-
+        let valid = true
         // event.target refers to the DOM element that triggered the event
         const formData = new FormData(event.target)
         
         const firstName = formData.get('employeeFirstName')
         const lastName = formData.get('employeeLastName')
         const department = formData.get('employeeDepartment')
+
+        console.log(department)
         
-
-
-
         if (typeof firstName === "string" && firstName.trim().length >= 3) {
             setNameError("")
         } else{
             setNameError("First name must be longer than three characters")
+            valid = false
         }
 
         if (typeof lastName === "string" && lastName.trim().length >= 2) {
             setLastNameError("")
         } else{
             setLastNameError("Last name must be longer than two characters")
+            valid = false
         }
 
-        if (typeof firstName === "string" && lastName === "string" && department === "string") {
+        if (typeof firstName === "string" && typeof lastName === "string" && typeof department === "string" && valid === true) {
+            setValidationError("")
             const employeeValues: EmployeeData = {
                 firstName: firstName,
                 lastName: lastName,
                 department: department
             }
+            console.log(employeeValues)
+        } else if (valid === false){
+            setValidationError("Please ensure employee name meets standards")
         }
     }
 
     return(
         <form id="employeeForm" onSubmit={handleSubmission}>
+            <p>{validationError}</p>
             <label>Employee First Name:
                 <input id="firstNameBox" type="text" name="employeeFirstName" />
             </label>
