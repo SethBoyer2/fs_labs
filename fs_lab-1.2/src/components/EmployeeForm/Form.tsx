@@ -1,17 +1,18 @@
 import { useState } from "react"
 import './Form.css'
 
-interface employeeData {
+export interface EmployeeData {
     firstName: string
     lastName: string
-    department: 'Administration' | 'Audit' | 'Banking Operations' |
-    'Communications' | 'Corporate Services' | 'Facilities' | 'Financial Services' |
-    'Human Resources' | 'Information Technology' | 'It Technician'
+    department: string
+    // Changing department type to string because it isn't possible to select a different department
+    // than what is listed on the select
 
 }
 function EmployeeForm () {
     // useState is function scoped
     const [nameError, setNameError] = useState('')
+    const [lastNameError, setLastNameError] = useState('')
     function handleSubmission(event: React.SubmitEvent<HTMLFormElement>) {
         event.preventDefault()
 
@@ -19,17 +20,32 @@ function EmployeeForm () {
 
         // event.target refers to the DOM element that triggered the event
         const formData = new FormData(event.target)
-        const employeeValues = {
-            firstName: formData.get('employeeFirstName'),
-            lastName: formData.get('employeeLastName'),
-            department: formData.get('employeeDepartment')
+        
+        const firstName = formData.get('employeeFirstName')
+        const lastName = formData.get('employeeLastName')
+        const department = formData.get('employeeDepartment')
+        
+
+
+
+        if (typeof firstName === "string" && firstName.trim().length >= 3) {
+            setNameError("")
+        } else{
+            setNameError("First name must be longer than three characters")
         }
 
-        if (typeof employeeValues.firstName === "string" && employeeValues.firstName.trim().length >= 3) {
-            setNameError("")
+        if (typeof lastName === "string" && lastName.trim().length >= 2) {
+            setLastNameError("")
+        } else{
+            setLastNameError("Last name must be longer than two characters")
+        }
 
-        } else  {
-            setNameError("Please enter a first name & ensure it is >= 3 characters")
+        if (typeof firstName === "string" && lastName === "string" && department === "string") {
+            const employeeValues: EmployeeData = {
+                firstName: firstName,
+                lastName: lastName,
+                department: department
+            }
         }
     }
 
@@ -38,11 +54,12 @@ function EmployeeForm () {
             <label>Employee First Name:
                 <input id="firstNameBox" type="text" name="employeeFirstName" />
             </label>
-            <p id="nameError">{nameError}</p>
+            <p className="name-Error">{nameError}</p>
 
             <label>Employee Last Name:
                 <input id="lastNameBox" type="text" name="employeeLastName" />
             </label>
+            <p className="name-Error">{lastNameError}</p>
 
             <label>Employee Department:
                 <select name="employeeDepartment" id="department_field">

@@ -19,6 +19,6 @@
     display: block;
 }
 
-#nameError {
+.name-Error {
     color: red;
 }

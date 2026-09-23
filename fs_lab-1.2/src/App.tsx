@@ -3,7 +3,7 @@ import DepartmentList from './components/DepartmentList/DepartmentList'
 import Footer from './components/Footer/Footer'
 import './App.css'
 import Header from './components/Header/Header'
-import EmployeeForm from './components/EmployeeForm/Form'
+import EmployeeForm, { type EmployeeData } from './components/EmployeeForm/Form'
 import Departments from './components/DepartmentList/Data'
 
 function App() {
@@ -11,12 +11,16 @@ function App() {
   // The point of having a department state is so that what departmentList iterates over can be flexible.
   // Ie. Start with Departments from data.tsx, and allow us to change what it renders, and re-render the site.
 const [departments, setDepartments] = useState(Departments)
+
+  function addEmployee(employeeValues: EmployeeData) {
+    
+  }
   return (
     <>
     <Header />
       <main>
         <DepartmentList departments={departments}/>
-        <EmployeeForm />
+        <EmployeeForm addEmployee={addEmployee}/>
       </main>
 
       <Footer />
