@@ -16,8 +16,8 @@ const [departments, setDepartments] = useState(Departments)
     <>
     <Header />
       <main>
-        <DepartmentList departments={departments}/>
-        <EmployeeForm/>
+        <DepartmentList departments={departments} />
+        <EmployeeForm departments={departments} updateDepartments={setDepartments}/>
       </main>
 
       <Footer />

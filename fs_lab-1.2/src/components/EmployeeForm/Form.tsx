@@ -1,5 +1,6 @@
-import { use, useState } from "react"
+import React, { useState } from "react"
 import './Form.css'
+import type { Department } from "../DepartmentList/Data"
 
 
 export interface EmployeeData {
@@ -10,7 +11,13 @@ export interface EmployeeData {
     // than what is listed on the select
 
 }
-function EmployeeForm () {
+
+type EmployeesProps = {
+    departments: Department[]
+    updateDepartments: React.Dispatch<React.SetStateAction<Department[]>>
+}
+
+function EmployeeForm ({departments, updateDepartments}: EmployeesProps) {
     // useState is function scoped
     const [nameError, setNameError] = useState('')
     const [lastNameError, setLastNameError] = useState('')
@@ -18,7 +25,6 @@ function EmployeeForm () {
 
     function handleSubmission(event: React.SubmitEvent<HTMLFormElement>) {
         event.preventDefault()
-        let valid = true
         // event.target refers to the DOM element that triggered the event
         const formData = new FormData(event.target)
         
@@ -26,35 +32,30 @@ function EmployeeForm () {
         const lastName = formData.get('employeeLastName')
         const department = formData.get('employeeDepartment')
 
-        console.log(department)
-        
-        if (typeof firstName === "string" && firstName.trim().length >= 3) {
-            setNameError("")
-        } else{
-            setNameError("First name must be longer than three characters")
-            valid = false
-        }
-
-        if (typeof lastName === "string" && lastName.trim().length >= 2) {
-            setLastNameError("")
-        } else{
-            setLastNameError("Last name must be longer than two characters")
-            valid = false
-        }
-
-        if (typeof firstName === "string" && typeof lastName === "string" && typeof department === "string" && valid === true) {
-            setValidationError("")
-            const employeeValues: EmployeeData = {
-                firstName: firstName,
-                lastName: lastName,
-                department: department
+        if (firstName === "string" && lastName === "string" && department === "string") {
+            if (firstName && lastName && department !== null) {
+                const employee: EmployeeData = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    department: department
+                }
+                addEmployee(employee)
             }
-            console.log(employeeValues)
-        } else if (valid === false){
-            setValidationError("Please ensure employee name meets standards")
+            
         }
     }
 
+    function addEmployee(employee: EmployeeData) {
+        updateDepartments(departments => {
+            return departments.map(department => {
+                if(department.name === employee.department) {
+                    return { ...department, employees: [...department.employees, employee]}
+                }
+                return department
+                console.log(department)
+            })
+        })
+    }
     return(
         <form id="employeeForm" onSubmit={handleSubmission}>
             <p>{validationError}</p>
@@ -82,10 +83,7 @@ function EmployeeForm () {
                     <option value="IT Technician">It Technician</option>
                 </select>
             </label>
-
             <button id="submitButton" type="submit">Submit</button>
-            
-
         </form>
     )
 }
