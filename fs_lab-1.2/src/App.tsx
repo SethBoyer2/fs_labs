@@ -3,7 +3,7 @@ import DepartmentList from './components/DepartmentList/DepartmentList'
 import Footer from './components/Footer/Footer'
 import './App.css'
 import Header from './components/Header/Header'
-import EmployeeForm, { type EmployeeData } from './components/EmployeeForm/Form'
+import EmployeeForm from './components/EmployeeForm/Form'
 import Departments from './components/DepartmentList/Data'
 
 function App() {
@@ -29,7 +29,7 @@ App owns state because EmployeeForm and DepartmentList are siblings. They cannot
 When App owns state, EmployeeForm and DepartmentList can both access the state because it's passed down. Moving the state up allows both to work.
 
 By default, App.tsx runs, which triggers the initial useState, which sets departments to the Department list from Data.tsx, allowing the site to render
-the full department list initially. 
+the full department list initially.
 
 What I need to do is:
 - Fill out employee info (good)
