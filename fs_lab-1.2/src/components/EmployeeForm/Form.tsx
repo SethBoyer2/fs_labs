@@ -25,11 +25,11 @@ function EmployeeForm () {
             department: formData.get('employeeDepartment')
         }
 
-        if (typeof employeeValues.firstName !== "string" || employeeValues.firstName.trim().length < 3) {
-            
+        if (typeof employeeValues.firstName === "string" && employeeValues.firstName.trim().length >= 3) {
+            setNameError("")
 
         } else  {
-            
+            setNameError("Please enter a first name & ensure it is >= 3 characters")
         }
     }
 
@@ -38,7 +38,7 @@ function EmployeeForm () {
             <label>Employee First Name:
                 <input id="firstNameBox" type="text" name="employeeFirstName" />
             </label>
-            <p>{nameError}</p>
+            <p id="nameError">{nameError}</p>
 
             <label>Employee Last Name:
                 <input id="lastNameBox" type="text" name="employeeLastName" />
@@ -55,7 +55,7 @@ function EmployeeForm () {
                     <option value="Financial Services">Financial Services</option>
                     <option value="Human Resources">Human Resources</option>
                     <option value="Information Technology">Information Technology</option>
-                    <option value="It Technician">It Technician</option>
+                    <option value="IT Technician">It Technician</option>
                 </select>
             </label>
 

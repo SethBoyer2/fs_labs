@@ -18,3 +18,7 @@
 #employeeForm select {
     display: block;
 }
+
+#nameError {
+    color: red;
+}
