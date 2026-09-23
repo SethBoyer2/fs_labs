@@ -5,7 +5,7 @@ function DepartmentList() {
     return(
         Departments.map((department) => (
             <section>
-                <h2>{department.name}</h2>
+                <h2 id="department.name">{department.name}</h2>
 
                 <ul>
                     {department.employees.map((employee) => (
