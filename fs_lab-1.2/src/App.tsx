@@ -1,45 +1,25 @@
-import { useState } from 'react'
-import { Routes } from 'react-router-dom'
-import DepartmentList from './components/DepartmentList/DepartmentList'
-import Footer from './components/Footer/Footer'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import Header from './components/Header/Header'
-import EmployeeForm from './components/EmployeeForm/Form'
-import Departments from './components/DepartmentList/Data'
+import Layout from './Layout'
+import Organization from './components/Pages/Organization'
+import Employees from './components/Pages/Employees'
 
 function App() {
-  // Need to have the department state in app.tsx, because app can pass the state downward.
-  // The point of having a department state is so that what departmentList iterates over can be flexible.
-  // Ie. Start with Departments from data.tsx, and allow us to change what it renders, and re-render the site.
-const [departments, setDepartments] = useState(Departments)
-
   return (
-    <>
-    <Header />
-      <main>
-        <DepartmentList departments={departments} />
-        <EmployeeForm departments={departments} updateDepartments={setDepartments}/>
-      </main>
-
-      <Footer />
-    </>
+    <Routes> 
+{/* Need to keep routes within the layout path so that the page knows to follow the layout at the root URL */}
+      <Route path="/" element={<Layout />}>
+        <Route path='Organization' element={<Organization />} />
+        <Route path='Employees' element={<Employees />} />
+      </Route>
+    </Routes>
   )
 }
-/*
-App owns state because EmployeeForm and DepartmentList are siblings. They cannot see eachother or what they contain (for my purposes, anyways.)
-When App owns state, EmployeeForm and DepartmentList can both access the state because it's passed down. Moving the state up allows both to work.
+// These comments are basically just for myself so I remember all of this when I start working on the sprint
 
-By default, App.tsx runs, which triggers the initial useState, which sets departments to the Department list from Data.tsx, allowing the site to render
-the full department list initially.
-
-What I need to do is:
-- Fill out employee info (good)
-- validate employee info (also good enough for the lab)
-- create an object containing the employee info (good)
-- pass employee information to addEmployee function
-- re-render the site in the addEmployee function by seting the useState to the employee object(???)
-- map the departments again so that I can iterate and match the new employees department
-- ???????
-*/
-
+// Click -> LinkTo="XYZ"
+// React Router changes the url to XYZ
+// Routes tag checks through the routes to find the match
+// and then it basically just triggers whatever element matches the url and displays it via the outlet
+// initial setup is definitely the hardest part. After it starts coming together its a lot easier than the last lab
 export default App

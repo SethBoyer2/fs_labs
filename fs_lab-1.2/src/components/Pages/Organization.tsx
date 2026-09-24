@@ -45,5 +45,14 @@ const leadership: Role[] = [
 ];
 
 function Organization() {
-
+    return(
+        leadership.map((person) => (
+            <section>
+                <p>{person.firstName} {person.lastName}</p>
+                <p>{person.role}</p>
+            </section>
+        ))
+    )
 }
+
+export default Organization
