@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Routes } from 'react-router-dom'
 import DepartmentList from './components/DepartmentList/DepartmentList'
 import Footer from './components/Footer/Footer'
 import './App.css'
