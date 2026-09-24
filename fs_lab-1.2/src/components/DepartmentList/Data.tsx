@@ -1,4 +1,4 @@
-interface Department {
+export interface Department {
 	name: string;
   	employees: Employee[];
 }
@@ -41,7 +41,7 @@ const Departments: Department[] = [
     ],
   },
   {
-    name: "corporate services",
+    name: "Corporate Services",
     employees: [
       { firstName: "Randy", lastName: "Bradshaw" },
       { firstName: "Tracy", lastName: "Cook" },
@@ -49,7 +49,7 @@ const Departments: Department[] = [
     ],
   },
   {
-    name: "facilities",
+    name: "Facilities",
     employees: [
       { firstName: "Dakota", lastName: "House" },
       { firstName: "Lori Lea", lastName: "Okemah" },
@@ -58,7 +58,7 @@ const Departments: Department[] = [
     ],
   },
   {
-    name: "financial services",
+    name: "Financial Services",
     employees: [
       { firstName: "Selina", lastName: "Hanusa" },
       { firstName: "Buffy", lastName: "Gaudry" },
@@ -68,7 +68,7 @@ const Departments: Department[] = [
     ],
   },
   {
-    name: "human resources",
+    name: "Human Resources",
     employees: [
       { firstName: "Jesse Ed", lastName: "Azure" },
       { firstName: "Stacy", lastName: "Da Silva" },
@@ -78,7 +78,7 @@ const Departments: Department[] = [
     ],
   },
   {
-    name: "information technology",
+    name: "Information Technology",
     employees: [
       { firstName: "Graham", lastName: "Greene" },
       { firstName: "Sandika", lastName: "Evergreen" },
@@ -86,7 +86,7 @@ const Departments: Department[] = [
     ],
   },
   {
-    name: "IT technician",
+    name: "It Technician",
     employees: [
       { firstName: "Aiyana", lastName: "LittleBear" },
       { firstName: "Inara", lastName: "Thunderbird" },

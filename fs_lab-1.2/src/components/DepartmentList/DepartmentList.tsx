@@ -1,11 +1,12 @@
-import Departments from "./Data"
+import type { Department } from "./Data"
 import "./DepartmentList.css"
 
-function DepartmentList() {
+
+function DepartmentList({departments}: {departments: Department[]}) {
     return(
-        Departments.map((department) => (
+        departments.map((department) => (
             <section>
-                <h2>{department.name}</h2>
+                <h2 id={department.name}>{department.name}</h2>
 
                 <ul>
                     {department.employees.map((employee) => (
