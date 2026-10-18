@@ -5,9 +5,9 @@ import { createEmployee } from "../repository/employeeRepo";
 
 
 function validateDept(employee: EmployeeData, Departments:Department[]) {
-        if (!Departments.some((department) => department.name === employee.department)) {
-        console.log("Your DEPARTMENT. SUCKS!!!!")
-        return false
+    if (!Departments.some((department) => department.name === employee.department)) {
+    console.log("Your DEPARTMENT. SUCKS!!!!")
+    return false
     }
     return true
 }
