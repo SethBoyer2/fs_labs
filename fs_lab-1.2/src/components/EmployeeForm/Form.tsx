@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Form.css";
 import type { EmployeeData } from "../../types/employees";
-import type {EmployeesProps} from "../../types/employeeProps"
+import type {EmployeesProps} from "../../types/employeeProps.ts"
 
 
 
