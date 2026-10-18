@@ -1,19 +1,10 @@
 import React, { useState } from "react";
 import "./Form.css";
-import type { Department } from "../DepartmentList/Data";
+import type { EmployeeData } from "../../types/employees";
+import type {EmployeesProps} from "../../types/employeeProps"
 
-export interface EmployeeData {
-  firstName: string;
-  lastName: string;
-  department: string;
-  // Changing department type to string because it isn't possible to select a different department
-  // than what is listed on the select
-}
 
-type EmployeesProps = {
-  departments: Department[];
-  updateDepartments: React.Dispatch<React.SetStateAction<Department[]>>;
-};
+
 
 function EmployeeForm({ departments, updateDepartments }: EmployeesProps) {
   function handleSubmission(event: React.SubmitEvent<HTMLFormElement>) {
