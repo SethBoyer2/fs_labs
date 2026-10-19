@@ -9,5 +9,7 @@ function useFormInput() {
         setFormValue(formValue)
     }    
 
+    function validate()
+
     return updateValue
 }
