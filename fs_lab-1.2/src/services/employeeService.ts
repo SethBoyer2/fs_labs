@@ -20,8 +20,3 @@ function validateName(employee:EmployeeData) {
     return true
 }
 
-function validationDispatcher(employee:EmployeeData, Departments: Department[]) {
-    if(validateDept(employee, Departments) && validateName(employee)) {
-        createEmployee(employee, Departments)
-    }
-}
