@@ -25,20 +25,8 @@ const [departments, setDepartments] = useState(Departments)
   )
 }
 /*
-App owns state because EmployeeForm and DepartmentList are siblings. They cannot see eachother or what they contain (for my purposes, anyways.)
-When App owns state, EmployeeForm and DepartmentList can both access the state because it's passed down. Moving the state up allows both to work.
-
-By default, App.tsx runs, which triggers the initial useState, which sets departments to the Department list from Data.tsx, allowing the site to render
-the full department list initially.
-
-What I need to do is:
-- Fill out employee info (good)
-- validate employee info (also good enough for the lab)
-- create an object containing the employee info (good)
-- pass employee information to addEmployee function
-- re-render the site in the addEmployee function by seting the useState to the employee object(???)
-- map the departments again so that I can iterate and match the new employees department
-- ???????
+app STILL owns the state, Employee form collects the data, the service validates & sends data to the repo,
+the repo updates and returns the data
 */
 
 export default App

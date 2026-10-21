@@ -2,61 +2,66 @@ import React, { useState } from "react";
 import "./Form.css";
 import type { EmployeeData } from "../../types/employees";
 import type {EmployeesProps} from "../../types/employeeProps.ts"
+import { validateName } from "../../services/employeeService.ts";
+import { validateDept } from "../../services/employeeService.ts";
+import { addEmployee } from "../../services/employeeService.ts";
+import { useFormInput } from "../../hooks/useFormInput.ts";
 
 
 
 
 function EmployeeForm({ departments, updateDepartments }: EmployeesProps) {
+  const department = useFormInput()
+  const firstName = useFormInput()
+  const lastName = useFormInput()
   function handleSubmission(event: React.SubmitEvent<HTMLFormElement>) {
-    event.preventDefault();
-    // event.target refers to the DOM element that triggered the event
-    const formData = new FormData(event.target);
 
-    const firstName = formData.get("employeeFirstName");
-    const lastName = formData.get("employeeLastName");
-    const department = formData.get("employeeDepartment");
-    if (
-      typeof firstName === "string" &&
-      typeof lastName === "string" &&
-      typeof department === "string"
-    ) {
+    event.preventDefault();
+    console.log("Form submitted")
+    
+
+    console.log("First name:", firstName);
+    console.log("Last name:", lastName);
+    console.log("Department:", department);
+
+{
       const employee: EmployeeData = {
-        firstName: firstName,
-        lastName: lastName,
-        department: department,
+        firstName: firstName.formValue,
+        lastName: lastName.formValue,
+        department: department.formValue,
       };
-      addEmployee(employee);
+      console.log(employee)
+      // if validation fails, exit the function
+      console.log("valid saldad", validateName(employee), validateDept(employee, departments))
+      console.log("Selected department:", employee.department);
+      console.log("Available departments:", departments.map(d => d.name));
+      if (!validateName(employee) || !validateDept(employee, departments)) {
+        return
+      }
+      
+
+      updateDepartments(previousDepartments=> 
+         addEmployee(employee, previousDepartments)
+      )
     }
   }
 
-  function addEmployee(employee: EmployeeData) {
-    updateDepartments((departments) => {
-      return departments.map((department) => {
-        if (department.name === employee.department) {
-          return {
-            ...department,
-            employees: [...department.employees, employee],
-          };
-        }
-        return department;
-      });
-    });
-  }
+
   return (
     <form id="employeeForm" onSubmit={handleSubmission}>
       <label>
         Employee First Name:
-        <input id="firstNameBox" type="text" name="employeeFirstName" />
+        <input id="firstNameBox" type="text" name="employeeFirstName" value={firstName.formValue} onChange={(event) => firstName.updateValue(event.target.value)}/>
       </label>
 
       <label>
         Employee Last Name:
-        <input id="lastNameBox" type="text" name="employeeLastName" />
+        <input id="lastNameBox" type="text" name="employeeLastName" value={lastName.formValue} onChange={(event) => lastName.updateValue(event.target.value)}/>
       </label>
 
       <label>
         Employee Department:
-        <select name="employeeDepartment" id="department_field">
+        <select name="employeeDepartment" id="department_field" value={department.formValue} onChange={(event) => department.updateValue(event.target.value)}>
           <option value="Administration">Administration</option>
           <option value="Audit">Audit</option>
           <option value="Banking Operations">Banking Operations</option>
