@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export interface Role {
     firstName: string
     lastName: string
@@ -45,6 +47,7 @@ const leadership: Role[] = [
 ];
 
 function Organization() {
+    const [roles, setRoles] = useState<Role[]>(leadership)
     return(
         leadership.map((person) => (
             <section>
