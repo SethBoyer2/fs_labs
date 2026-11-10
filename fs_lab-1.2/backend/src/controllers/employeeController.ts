@@ -1,5 +1,6 @@
 import type {Request, Response} from "express"
-import type {EmployeeData} from "../Types/Employee"
+import { Employee } from "../Types/Employee"
+import { employeeService } from "../services/employeeService"
 
 // export all controller functions
 export const employeeController = {
@@ -16,7 +17,7 @@ export const employeeController = {
         // body has already passed validation middleware(?)
         // implement dat
         const employee = await employeeService.add(
-            req.body as EmployeeData // call monsterService.add with the request body as an EmployeeData object
+            req.body as Employee // call monsterService.add with the request body as an EmployeeData object
         )
     }
 }
