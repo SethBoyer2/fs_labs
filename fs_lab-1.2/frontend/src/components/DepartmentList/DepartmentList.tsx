@@ -1,4 +1,4 @@
-import type { Department } from "./Data"
+import type { Department } from "../../../../shared/types/department"
 import "./DepartmentList.css"
 
 

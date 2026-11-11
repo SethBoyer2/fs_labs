@@ -1,53 +1,36 @@
 import React, { useState } from "react";
 import "./Form.css";
-import type { EmployeeData } from "../../types/employees";
-import type {EmployeesProps} from "../../types/employeeProps.ts"
-import { validateName } from "../../services/employeeService.ts";
-import { validateDept } from "../../services/employeeService.ts";
-import { addEmployee } from "../../services/employeeService.ts";
+import type { Employee } from "../../../../shared/types/employees.ts";
+import { employeeService } from "../../services/employeeService.ts";
+import type { Department } from "../../../../shared/types/department.ts";
 import { useFormInput } from "../../hooks/useFormInput.ts";
+import DepartmentList from "../DepartmentList/DepartmentList.tsx";
 
 
 
 
-function EmployeeForm({ departments, updateDepartments }: EmployeesProps) {
+function EmployeeForm() {
   const department = useFormInput()
   const firstName = useFormInput()
   const lastName = useFormInput()
   function handleSubmission(event: React.SubmitEvent<HTMLFormElement>) {
 
     event.preventDefault();
-    console.log("Form submitted")
-    
 
-    console.log("First name:", firstName);
-    console.log("Last name:", lastName);
-    console.log("Department:", department);
-
-{
-      const employee: EmployeeData = {
+      const employee: Employee = {
         firstName: firstName.formValue,
         lastName: lastName.formValue,
         department: department.formValue,
       };
-      console.log(employee)
-      // if validation fails, exit the function
-      console.log("valid saldad", validateName(employee), validateDept(employee, departments))
-      console.log("Selected department:", employee.department);
-      console.log("Available departments:", departments.map(d => d.name));
-      if (!validateName(employee) || !validateDept(employee, departments)) {
-        return
-      }
-      
-
-      updateDepartments(previousDepartments=> 
-         addEmployee(employee, previousDepartments)
-      )
+      employeeService.addEmployee(employee)
     }
-  }
+    
+  
 
 
   return (
+    <>
+    
     <form id="employeeForm" onSubmit={handleSubmission}>
       <label>
         Employee First Name:
@@ -78,6 +61,7 @@ function EmployeeForm({ departments, updateDepartments }: EmployeesProps) {
         Submit
       </button>
     </form>
+    </>
   );
 }
 

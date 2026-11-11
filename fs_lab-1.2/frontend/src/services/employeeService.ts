@@ -1,27 +1,33 @@
 import type { Employee } from "../../../shared/types/employees";
 import type { Department } from "../../../shared/types/department";
-import { createEmployee } from "../repository/employeeRepo";
+import { employeeRepository } from "../repository/employeeRepo";
 
 
-// if employee's department isn't in the department list, return false
-export function validateDept(employee: Employee, Departments:Department[]) {
-    if (!Departments.some((department) => department.name === employee.department)) {
-    return false
+function validateEmployee(input: Employee) {
+    const errors: string[] =[]
+
+    if(input.firstName.trim().length < 3){
+        errors.push("Employee name must be at least 3 characters")
     }
-    return true
+     if (errors.length > 0) {
+        throw new Error(errors.join(" "))
+     }
 }
+export const employeeService = {
+    async getEmployees(): Promise<Employee[]> {
+        return employeeRepository.getAll()
+    },
 
-// if employee's name is less than 3 characters in length, return false
-export function validateName(employee:Employee) {
-    if (employee.firstName.length < 3) {
-    return false
-    }
-    return true
+    async addEmployee(input: Employee): Promise<Employee>{
+        const employeeInput: Employee = {
+            firstName: input.firstName.trim(),
+            lastName: input.lastName?.trim(),
+            department: input.department
+        }
+
+        validateEmployee(employeeInput)
+
+        return employeeRepository.add(employeeInput)
+    } 
 }
-
-// call createEmployee with the validated employee + Departments and return Department[] from the repo
-export function addEmployee(employee: Employee, Departments: Department[]): Department[] {
-    return createEmployee(employee, Departments)
-}
-
 
