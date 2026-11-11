@@ -1,5 +1,6 @@
 import {Router} from "express"
 import { employeeController } from "../controllers/employeeController"
+import { ValidateEmployeeBody } from "../validations/employeeValidations"
 export const employeeRoutes = Router()
 
 employeeRoutes.get(
@@ -9,7 +10,7 @@ employeeRoutes.get(
 
 employeeRoutes.post(
     "/",
-    validateEmployeeBody,
+    ValidateEmployeeBody,
     employeeController.add
 
 )
