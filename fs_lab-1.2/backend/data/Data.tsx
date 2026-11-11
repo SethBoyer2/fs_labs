@@ -1,27 +1,8 @@
 import type { Employee } from "../../shared/types/employees";
+import type {Department} from "../../shared/types/department"
 
-export interface Department {
-	name: string;
-  employees: Omit<Employee, "department">[]; // my three separate employee types were genuinely frying me.
-  // used omit above to allow me to consolidate employee and department into one interface
-}
-// this is fine, because departments will be assigned at runtime when a getAll request is sent. 
 
-// I thought it'd be nice to have an exported array of department names 
-// cause yeah
-// hi
-export const departmentNames: string[] = 
-["Administration", 
-"Audit", 
-"Banking Operations", 
-"Communications",
-"Corporate Services",
-"Facilities",
-"Financial Services",
-"Human Resources",
-"Information Technology",
-"It Technician"
-] 
+
 const Departments: Department[] = [
   {
     name: "Administration",

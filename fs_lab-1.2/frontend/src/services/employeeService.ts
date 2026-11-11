@@ -1,10 +1,10 @@
-import type { EmployeeData } from "../types/employees";
-import type { Department } from "../components/DepartmentList/Data";
+import type { Employee } from "../../../shared/types/employees";
+import type { Department } from "../../../shared/types/department";
 import { createEmployee } from "../repository/employeeRepo";
 
 
 // if employee's department isn't in the department list, return false
-export function validateDept(employee: EmployeeData, Departments:Department[]) {
+export function validateDept(employee: Employee, Departments:Department[]) {
     if (!Departments.some((department) => department.name === employee.department)) {
     return false
     }
@@ -12,7 +12,7 @@ export function validateDept(employee: EmployeeData, Departments:Department[]) {
 }
 
 // if employee's name is less than 3 characters in length, return false
-export function validateName(employee:EmployeeData) {
+export function validateName(employee:Employee) {
     if (employee.firstName.length < 3) {
     return false
     }
@@ -20,7 +20,7 @@ export function validateName(employee:EmployeeData) {
 }
 
 // call createEmployee with the validated employee + Departments and return Department[] from the repo
-export function addEmployee(employee: EmployeeData, Departments: Department[]): Department[] {
+export function addEmployee(employee: Employee, Departments: Department[]): Department[] {
     return createEmployee(employee, Departments)
 }
 
