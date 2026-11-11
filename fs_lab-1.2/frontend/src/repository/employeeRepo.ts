@@ -1,5 +1,5 @@
 import type { Employee } from "../../../shared/types/employees";
-
+import type { Department } from "../../../shared/types/department";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL
 const endpoint = `${baseUrl}/api/employees`
@@ -23,10 +23,15 @@ export const employeeRepository = {
     async add(input: Employee): Promise<Employee> {
         const response = await fetch (endpoint, {
             method:"POST",
-            headers:{"Content-Type": "applications/json"
+            headers: {"Content-Type": "application/json"
             },
             body: JSON.stringify(input)
         })
         return readJson<Employee>(response)
+    },
+
+    async getDepartments(): Promise<Department[]> {
+        const response = await fetch(`${endpoint}/departments`)
+        return readJson<Department[]>(response)
     }
 }

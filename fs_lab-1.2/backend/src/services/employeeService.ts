@@ -8,5 +8,9 @@ export const employeeService = {
 
     async add(input: Employee) {
         return employeeRepository.add(input)
+    },
+
+    getDepartments() {
+        return employeeRepository.getDepartments()
     }
 }

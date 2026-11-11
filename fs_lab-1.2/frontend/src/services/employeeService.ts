@@ -28,6 +28,11 @@ export const employeeService = {
         validateEmployee(employeeInput)
 
         return employeeRepository.add(employeeInput)
-    } 
+    },
+    
+    async getDepartments(): Promise<Department[]> {
+        return employeeRepository.getDepartments()
+    }
+
 }
 

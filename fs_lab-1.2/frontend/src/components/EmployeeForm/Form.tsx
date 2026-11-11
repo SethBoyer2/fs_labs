@@ -1,19 +1,20 @@
-import React, { useState } from "react";
 import "./Form.css";
 import type { Employee } from "../../../../shared/types/employees.ts";
 import { employeeService } from "../../services/employeeService.ts";
-import type { Department } from "../../../../shared/types/department.ts";
 import { useFormInput } from "../../hooks/useFormInput.ts";
-import DepartmentList from "../DepartmentList/DepartmentList.tsx";
 
 
 
+interface EmployeeFormProps {
+  onEmployeeCreated: () => void;
+}
 
-function EmployeeForm() {
+
+function EmployeeForm({ onEmployeeCreated }: EmployeeFormProps) {
   const department = useFormInput()
   const firstName = useFormInput()
   const lastName = useFormInput()
-  function handleSubmission(event: React.SubmitEvent<HTMLFormElement>) {
+  async function handleSubmission(event: React.SubmitEvent<HTMLFormElement>) {
 
     event.preventDefault();
 
@@ -22,7 +23,10 @@ function EmployeeForm() {
         lastName: lastName.formValue,
         department: department.formValue,
       };
-      employeeService.addEmployee(employee)
+
+      await employeeService.addEmployee(employee)
+
+      onEmployeeCreated()
     }
     
   
@@ -54,7 +58,7 @@ function EmployeeForm() {
           <option value="Financial Services">Financial Services</option>
           <option value="Human Resources">Human Resources</option>
           <option value="Information Technology">Information Technology</option>
-          <option value="IT Technician">It Technician</option>
+          <option value="It Technician">It Technician</option>
         </select>
       </label>
       <button id="submitButton" type="submit">

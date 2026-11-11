@@ -1,4 +1,3 @@
-import type { Employee } from "../../shared/types/employees";
 import type {Department} from "../../shared/types/department"
 
 

@@ -1,4 +1,4 @@
-import type {Department} from "../components/DepartmentList/Data"
+import type { Department } from "./department";
 
 export type EmployeesProps = {
   departments: Department[];

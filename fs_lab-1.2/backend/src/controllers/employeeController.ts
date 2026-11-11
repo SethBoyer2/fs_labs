@@ -13,11 +13,17 @@ export const employeeController = {
         res.json(employees)
     },
 
-    async add(res: Response, req: Request) {
+    async add(req: Request, res: Response) {
         // body has already passed validation middleware(?)
         // implement dat
         const employee = await employeeService.add(
-            req.body as Employee // call monsterService.add with the request body as an EmployeeData object
+            req.body as Employee // call employeeService.add with the request body as an EmployeeData object
         )
+        res.status(201).json(employee) // return 201 response w/ employee JSON
+    },
+
+    async getDepartments(req: Request, res: Response) {
+        const departments = await employeeService.getDepartments()
+        res.json(departments)
     }
 }

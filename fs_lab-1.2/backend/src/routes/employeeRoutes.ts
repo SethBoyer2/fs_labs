@@ -14,3 +14,8 @@ employeeRoutes.post(
     employeeController.add
 
 )
+
+employeeRoutes.get(
+    "/departments",
+    employeeController.getDepartments
+)
