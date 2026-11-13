@@ -23,9 +23,9 @@ function EmployeeForm({ onEmployeeCreated }: EmployeeFormProps) {
         lastName: lastName.formValue,
         department: department.formValue,
       };
-
+      // await addEmployee fe -> express backend
       await employeeService.addEmployee(employee)
-
+      // call back to loadDepartment, update department state
       onEmployeeCreated()
     }
     

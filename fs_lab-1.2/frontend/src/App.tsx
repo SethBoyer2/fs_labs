@@ -24,6 +24,10 @@ function App() {
 
 // pass departmentList departments prop for initial render
 // pass onEmployeeCreated prop to EmployeeForm w/ loadDepartments for callback to update department state
+
+// eventually that all culminates to the departmentList call
+// setDepartments to new array, render departmentlist with the current department state
+// dynamically generate employee/department list
   return (
     <>
     <Header />

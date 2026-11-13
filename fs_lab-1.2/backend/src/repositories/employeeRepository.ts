@@ -32,7 +32,8 @@ export const employeeRepository = {
       return {...employee}
     },
 
-    
+    // this is terrible and I shouldn't have had to do this in the first place
+    // learning experience
     async getDepartments(): Promise<Department[]> {
       // iterate over each department and create a new department obj
       return Departments.map((department) => ({
@@ -45,3 +46,6 @@ export const employeeRepository = {
       }));
     }
 }
+/* 
+in hindsight, I should've STARTED with the department-based logic instead of making it all employee based
+cause I ended up needing it for the app.tsx props anyways */
